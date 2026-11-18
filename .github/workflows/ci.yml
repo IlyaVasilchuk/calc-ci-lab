@@ -29,19 +29,6 @@ jobs:
 
       - name: Проверить типы mypy
         run: mypy src
-    steps:
-      - name: Получить исходный код
-        uses: actions/checkout@v7
-
-      - name: Установить Python
-        uses: actions/setup-python@v7
-        with:
-          python-version: "3.12"
-          cache: pip
-          cache-dependency-path: requirements-dev.txt
-
-      - name: Установить зависимости
-        run: pip install -r requirements-dev.txt
 
       - name: Запустить flake8
         run: flake8 src tests
