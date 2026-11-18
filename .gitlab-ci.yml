@@ -1,0 +1,38 @@
+stages:
+  - lint
+  - test
+  - build
+
+default:
+  image: python:3.12
+  tags:
+    - saas-linux-small-amd64
+
+before_script:
+  - pip install -r requirements-dev.txt
+
+lint:
+  stage: lint
+  script:
+    - flake8 src tests
+
+test:
+  stage: test
+  script:
+    - pytest -v --junitxml=report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
+    paths:
+      - report.xml
+
+build:
+  stage: build
+  script:
+    - python -m build
+    - pip install dist/*.whl
+    - calc add 2 3
+  artifacts:
+    paths:
+      - dist/
