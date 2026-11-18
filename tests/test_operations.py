@@ -52,3 +52,6 @@ def test_cli_add(capsys):
 def test_cli_division_by_zero_returns_error_code(capsys):
     assert main(["div", "1", "0"]) == 1
     assert "Ошибка" in capsys.readouterr().err
+
+def test_intentional_failure():
+    assert 2 + 2 == 5
