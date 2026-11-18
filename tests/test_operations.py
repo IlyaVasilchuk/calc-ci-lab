@@ -2,7 +2,14 @@
 
 import pytest
 
-from calc import add, divide, multiply, power, subtract
+from calc import (
+    add,
+    celsius_to_fahrenheit,
+    divide,
+    multiply,
+    power,
+    subtract,
+)
 from calc.cli import main
 
 
@@ -52,3 +59,15 @@ def test_cli_add(capsys):
 def test_cli_division_by_zero_returns_error_code(capsys):
     assert main(["div", "1", "0"]) == 1
     assert "Ошибка" in capsys.readouterr().err
+
+def test_celsius_to_fahrenheit_zero():
+    assert celsius_to_fahrenheit(0) == 32
+
+
+def test_celsius_to_fahrenheit_boiling():
+    assert celsius_to_fahrenheit(100) == 212
+
+
+def test_celsius_to_fahrenheit_invalid():
+    with pytest.raises(TypeError):
+        celsius_to_fahrenheit("hello")

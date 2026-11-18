@@ -15,6 +15,7 @@ lint:
   stage: lint
   script:
     - flake8 src tests
+    - mypy src
 
 test:
   stage: test

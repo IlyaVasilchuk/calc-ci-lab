@@ -10,6 +10,8 @@ jobs:
   lint:
     name: Проверка кода (flake8)
     runs-on: ubuntu-latest
+    name: Проверка mypy
+    run: mypy src
     steps:
       - name: Получить исходный код
         uses: actions/checkout@v7
